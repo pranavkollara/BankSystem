@@ -32,33 +32,45 @@ app.post("/adduser",async (req,res) => {
 })
 
 app.post("/transaction",async (req,res) => {
-//! id1 sender id2 reciver
+//! id1 sender id2 receiver
 try{
     const sender = await customerModel.findOne({id:req.body.id1});
     if(!sender) return res.status(404).json("sender not found");
-    const reciver = await customerModel.findOne({id:req.body.id2});
-    if(!reciver) return res.status(404).json("reciver not found")
+    const receiver = await customerModel.findOne({id:req.body.id2});
+    if(!receiver) return res.status(404).json("receiver not found")
     sender.balance-=req.body.amount;
     await sender.save();
-    reciver.balance+=req.body.amount;
-    await reciver.save();
+    receiver.balance+=req.body.amount;
+    await receiver.save();
     res.json({
-        "Message" : "Transaction Completed"
+        "Message" : "Transaction Completed",
+        "Sender" : sender.balance,
+        "Receiver" : receiver.balance
     })
 
     sender.transcation.push({
         amount:req.body.amount,
         description:"nice payment bro",
-        reciver:-1,
+        receiver:-1,
     })
-    reciver.transcation.push({
+    receiver.transcation.push({
         amount:req.body.amount,
         description:"nice payment bro",
-        reciver:1,
+        receiver:1,
     })
     await sender.save();
-    await reciver.save();
+    await receiver.save();
 
+    sender.transcation.sort((a,b) => b.date-a.date);
+    receiver.transcation.sort((a,b) => b.date-a.date);
+    if(sender.transcation.length >10){
+        sender.transcation.splice(10);
+    }
+    if(receiver.transcation.length >10){
+        receiver.transcation.splice(10);
+    }
+    await sender.save();
+    await receiver.save();
 
 
 }catch(err){
@@ -80,4 +92,16 @@ app.patch("/updatebalance/:uid",async (req,res) => {
     if(err.name === 'ValidationError') res.json("bro no balance");
     console.log(err);
    }
+})
+
+app.get("/balance/:uid",async (req,res) => {
+    try{
+        const user = await customerModel.findOne({
+            id:req.params.uid
+        })
+        if(!user) res.status(404).json("user not found");
+        res.json({"balance" : user.balance});
+    }catch(err){
+        console.log(err)
+    }
 })

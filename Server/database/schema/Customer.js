@@ -7,7 +7,7 @@ const transcationSchema = mongoose.Schema({
     },
     amount:Number,
     description:String,
-    reciver:Number // 1 reciverd -1 sent;
+    receiver:Number // 1 receiverd -1 sent;
 })
 
 const customerSchema = mongoose.Schema({
