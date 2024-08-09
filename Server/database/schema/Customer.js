@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 
 const transcationSchema = mongoose.Schema({
-    data:Date,
+    date:{
+      type:Date,
+      default:Date.now
+    },
     amount:Number,
     description:String,
-    reciver:Number
+    reciver:Number // 1 reciverd -1 sent;
 })
 
 const customerSchema = mongoose.Schema({
@@ -16,7 +19,7 @@ const customerSchema = mongoose.Schema({
     type:Number,
     default:1
   }, 
-  balance : Number,
+  balance : {type:Number,default:0,min:[0,"bro no money"]},
   transcation: [transcationSchema]
 });
 
