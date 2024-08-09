@@ -8,6 +8,8 @@ import {
 } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server';
 import Navbar from './modules/Navbar'
+import Transactions from './modules/Transactions'
+import Balance from './modules/Balance'
 
 export default async function Home() {
   const user = await currentUser();
@@ -16,7 +18,8 @@ export default async function Home() {
     return(
       <>
       <Navbar userid={user.id} username = {user.fullName}></Navbar>
-      
+      <Transactions></Transactions>
+      <Balance userid={user.id}></Balance>
       </>
     )
   }
