@@ -17,7 +17,8 @@ app.listen(4000,() => {
 app.post("/adduser",async (req,res) => {
    
    try{
-
+        const check = await customerModel.findOne({id:req.body.id});
+        if(check) return res.status(201).json("User already exists")
      const query = await customerModel.insertMany({
         id:req.body.id,
         name : req.body.name,
@@ -25,7 +26,7 @@ app.post("/adduser",async (req,res) => {
 
        });
        console.log("User Added");
-       res.json("Added")
+       res.status(201).json("Added")
    }catch(err){
     console.log(err);
    }
