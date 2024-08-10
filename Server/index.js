@@ -34,11 +34,14 @@ app.post("/adduser",async (req,res) => {
 
 app.post("/transaction",async (req,res) => {
 //! id1 sender id2 receiver
+if(req.body.id1 == req.body.id2){
+    return res.status(404).json({"Message":"BRO WHAT??"})
+}
 try{
     const sender = await customerModel.findOne({id:req.body.id1});
-    if(!sender) return res.status(404).json("sender not found");
+    if(!sender) return res.status(404).json({"Message":"Sender Not Found"});
     const receiver = await customerModel.findOne({id:req.body.id2});
-    if(!receiver) return res.status(404).json("receiver not found")
+    if(!receiver) return res.status(404).json({"Message":"Receiver Not Found"})
     sender.balance-=req.body.amount;
     await sender.save();
     receiver.balance= Number(receiver.balance) + Number(req.body.amount);
