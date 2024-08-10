@@ -32,7 +32,7 @@ export default function Transactions({ userid }) {
           if (key == 0 && element.receiver == -1) {
             return (
               <li>
-                <div className="bg-red-200timeline-start timeline-box bg-red-100 w-32 text-center ">
+                <div className="timeline-start timeline-box bg-red-100 w-32 text-center ">
                   ${element.amount}
                 </div>
                 <div className="timeline-middle">

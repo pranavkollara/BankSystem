@@ -41,7 +41,7 @@ try{
     if(!receiver) return res.status(404).json("receiver not found")
     sender.balance-=req.body.amount;
     await sender.save();
-    receiver.balance+=req.body.amount;
+    receiver.balance= Number(receiver.balance) + Number(req.body.amount);
     await receiver.save();
     res.json({
         "Message" : "Transaction Completed",
@@ -126,5 +126,24 @@ app.get("/role/:uid",async (req,res)=>{
         res.json(user.role);
     }catch(err){
         console.log(err);
+    }
+})
+
+app.get("/users",async (req,res)=>{
+    try{
+        const users = await customerModel.find();
+        const data = [];
+        users.forEach(element => {
+            if(element.role==1){
+
+                data.push({
+                    "name" :  element.name,
+                    "id":element.id
+                })
+            }
+        });
+        res.json(data)
+    }catch(err){
+        console.log(err)
     }
 })
