@@ -55,7 +55,7 @@ export default function Adminpage({ userid, username }) {
   }
 
   return (
-    <>
+    <div className="w-screen h-screen">
       <Navbar userid={userid} username={username}></Navbar>
       <div className="w-screen flex justify-center flex-col items-center gap-4 pt-4">
         <select
@@ -108,6 +108,6 @@ export default function Adminpage({ userid, username }) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
