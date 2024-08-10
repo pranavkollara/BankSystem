@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 export default function Transactions({ userid }) {
   const getdata = useRef(false);
   const [transaction, setTransaction] = useState([]);
+  const[load,setLoad] = useState(true);
   useEffect(() => {
     function gett() {
       if (getdata.current) return;
@@ -12,6 +13,7 @@ export default function Transactions({ userid }) {
         .then((respone) => respone.json())
         .then((data) => {
           console.log(data);
+          setLoad(false)
           setTransaction(data);
         });
     }
@@ -28,7 +30,21 @@ export default function Transactions({ userid }) {
      
     
       <ul className="timeline timeline-vertical">
-        {transaction.map((element, key) => {
+      {
+      
+        transaction.map((element, key) => {
+
+          
+          if(load){
+            return( <div className="flex justify-center">
+
+              <span className="loading loading-bars loading-lg"></span>
+            </div>
+            )
+          }
+          
+
+
           if (key == 0 && element.receiver == -1) {
             return (
               <li>
