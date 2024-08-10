@@ -1,3 +1,4 @@
+
 import {
   ClerkProvider,
   SignIn,
@@ -7,19 +8,17 @@ import {
   UserButton
 } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server';
-import Navbar from './modules/Navbar'
-import Transactions from './modules/Transactions'
-import Balance from './modules/Balance'
+import Router from './pages/Router'
 
 export default async function Home() {
   const user = await currentUser();
+  
+
 
   if(user){
     return(
       <>
-      <Navbar userid={user.id} username = {user.fullName}></Navbar>
-      <Balance userid={user.id}></Balance>
-      <Transactions userid={user.id}></Transactions>
+      <Router userid={user.id} username={user.fullName}></Router>
       
       </>
     )

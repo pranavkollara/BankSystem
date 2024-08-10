@@ -12,7 +12,7 @@ import {
 
 
 
-export default async function Navbar({userid,username}) {
+export default  function Navbar({userid,username}) {
     const userAddedRef = useRef(false);
 
     useEffect(()=>{
@@ -43,7 +43,7 @@ export default async function Navbar({userid,username}) {
     <div>
       <div className="navbar bg-base-100">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-xl">Bank</a>
   </div>
   <div className="flex-none gap-2">
     <UserButton></UserButton>

@@ -119,3 +119,12 @@ app.get("/transaction/:uid",async (req,res) => {
         console.log(err) ;
     }
 })
+
+app.get("/role/:uid",async (req,res)=>{
+    try{
+        const user = await customerModel.findOne({id:req.params.uid});
+        res.json(user.role);
+    }catch(err){
+        console.log(err);
+    }
+})
