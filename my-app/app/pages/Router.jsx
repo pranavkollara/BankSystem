@@ -24,7 +24,7 @@ export default function Router({userid,username}) {
 
     if(load){
         return(
-            <div className='w-full flex justify-center h-screen'>
+            <div className='w-screen flex justify-center h-screen'>
             <span className="loading loading-ring w-32 "></span>
             </div>
         )

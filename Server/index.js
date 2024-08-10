@@ -75,7 +75,7 @@ try{
 
 
 }catch(err){
-    if(err.name === 'ValidationError') res.status(401).json("bro no money");
+    if(err.name === 'ValidationError') res.status(401).json({"Message":"Not enough Money"});
     console.log(err);
 }
     

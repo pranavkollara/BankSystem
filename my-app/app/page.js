@@ -9,6 +9,7 @@ import {
 } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server';
 import Router from './pages/Router'
+import Navbar from './modules/Navbar';
 
 export default async function Home() {
   const user = await currentUser();
@@ -27,9 +28,10 @@ export default async function Home() {
 
   return (
     <>
-    <div className='w-full h-screen flex flex-row justify-center items-center'>
+    
+    <div className='w-screen h-screen flex flex-row justify-center items-center'>
 
-    <SignInButton></SignInButton>
+    <SignInButton><button className='btn btn-primary'>Sign In</button></SignInButton>
     </div>
     </>
   );

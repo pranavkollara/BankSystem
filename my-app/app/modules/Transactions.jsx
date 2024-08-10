@@ -21,7 +21,7 @@ export default function Transactions({ userid }) {
   }, [userid]);
 
   return (
-    <div className="w-screen flex justify-center p-4 ">
+    <div className="w-screen flex justify-center">
     
     <div className=" stats shadow w-96 py-4 mx-auto flex flex-col">
       
