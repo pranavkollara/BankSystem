@@ -18,8 +18,9 @@ export default async function Home() {
     return(
       <>
       <Navbar userid={user.id} username = {user.fullName}></Navbar>
-      <Transactions></Transactions>
       <Balance userid={user.id}></Balance>
+      <Transactions userid={user.id}></Transactions>
+      
       </>
     )
   }

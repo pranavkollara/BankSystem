@@ -106,3 +106,16 @@ app.get("/balance/:uid",async (req,res) => {
         console.log(err)
     }
 })
+
+app.get("/transaction/:uid",async (req,res) => {
+    try{
+        const user = await customerModel.findOne({
+            id:req.params.uid
+        })
+        const data = await user.transcation;
+    
+        res.json(data)
+    }catch(err){
+        console.log(err) ;
+    }
+})

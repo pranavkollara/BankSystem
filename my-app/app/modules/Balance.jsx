@@ -19,8 +19,8 @@ export default function Balance({userid}) {
     },[userid])
 
   return (
-    <div>
-      <div className="stats shadow  min-w-32">
+    <div className='flex justify-center items-center w-screen p-4 mx-auto'>
+      <div className="stats shadow w-96">
   <div className="stat">
     <div className="stat-title">Balance</div>
     <div className="stat-value">{balance}</div>
